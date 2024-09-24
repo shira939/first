@@ -1,0 +1,62 @@
+<h1>File Scanning and Reporting System</h1>
+<hr>
+<br>
+<div class="upload-container">
+  <h2>העלאת קובץ לסריקה</h2>
+ <div class="file-input-container">
+      <label for="file-upload" class="file-upload-label">
+          <span *ngIf="!fileSelected">בחר קובץ</span>
+          <span *ngIf="fileSelected">&#10003; קובץ נבחר</span>
+      </label>
+      <input id="file-upload" type="file" (change)="onFileSelected($event)" />
+  </div>
+  <button class="upload-button" (click)="onUpload()" [disabled]="uploadInProgress">
+    <span *ngIf="!uploadInProgress">העלה קובץ</span>
+    <span *ngIf="uploadInProgress"> <div class="spinner"></div> בהעלאה...</span>
+  </button>
+  <div *ngIf="scanResult" class="scan-result">
+    <h3>תוצאות סריקה</h3>
+    <p>שם הקובץ: {{ scanResult.filename }}</p>
+    <p>סטטוס סריקה: {{ scanResult.scan_result.scan_status }}</p>
+    <p>רמת סיכון: {{ scanResult.scan_result.risk_level }}</p>
+    <p>ציון סיכון: {{ scanResult.scan_result.score }}</p>
+    <div *ngIf="threatEngines.length > 0">
+      <h4>פרטי איומים:</h4>
+      <ul>
+        <li *ngFor="let engine of threatEngines">{{ engine }}: {{ scanResult.scan_result.threat_details[engine].threat }}</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+<!-- <h1>File Scanning and Reporting System</h1>
+<hr>
+<br>
+<div class="upload-container">
+  <h2>העלאת קובץ לסריקה</h2>
+  <div class="file-input-container">
+      <label for="file-upload" class="file-upload-label">
+          <span *ngIf="!fileSelected">בחר קובץ</span>
+          <span *ngIf="fileSelected">&#10003; קובץ נבחר</span>
+      </label>
+      <input id="file-upload" type="file" (change)="onFileSelected($event)" />
+  </div>
+  <button class="upload-button" (click)="onUpload()" [disabled]="uploadInProgress">
+    <span *ngIf="!uploadInProgress">העלה קובץ</span>
+    <span *ngIf="uploadInProgress"> <div class="spinner"></div> בהעלאה...</span>
+  </button>
+  
+  <div *ngIf="scanResult" class="scan-result">
+    <h3>תוצאות סריקה</h3>
+    <p>שם הקובץ: {{ scanResult.filename }}</p>
+    <p>סטטוס סריקה: {{ scanResult.scan_result.scan_status }}</p>
+    <p>רמת סיכון: {{ scanResult.scan_result.risk_level }}</p>
+    <p>ציון סיכון: {{ scanResult.scan_result.score }}</p>
+    <div *ngIf="threatEngines.length > 0">
+      <h4>פרטי איומים:</h4>
+      <ul>
+        <li *ngFor="let engine of threatEngines">{{ engine }}: {{ scanResult.scan_result.threat_details[engine].threat }}</li>
+      </ul>
+    </div>
+  </div>
+</div> -->
