@@ -36,9 +36,9 @@ async def upload_file(file: UploadFile = File(...)):
         """
     try:
         # Check file size limit (32 MB)
-        if file.file._file.size > 32 * 1024 * 1024:  # 32 MB limit
-            raise HTTPException(status_code=413, detail="File too large, please upload a smaller file (max 32 MB).")
-        # Read the content of the uploaded file
+        # if file.file._file.size > 32 * 1024 * 1024:  # 32 MB limit
+        #     raise HTTPException(status_code=413, detail="File too large, please upload a smaller file (max 32 MB).")
+        # # Read the content of the uploaded file
         file_content = await file.read()
         # Scan the file using VirusTotal
         scan_result = scan_file(file_content)
